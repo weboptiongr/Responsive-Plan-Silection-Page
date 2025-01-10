@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Paywall Header</title>
+<style>
+    @font-face {
+    font-family: NunitoFont;
+    src: url(font/Nunito-VariableFont_wght.ttf);
+ }
+
+ * {
+    font-family: NunitoFont;
+ }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: #fff;
+  }
+  
+  .header {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* space between top row and split sections */
+    padding: 12px;
+    background-color: #F2F0FC;
+    border-radius: 12px;
+  }
+  
+  .countdown {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .cta-button {
+    background: #7d5ac4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .cta-button:hover {
+    background: #6c4eb0;
+  }
+  
+  .split-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .split-column {
+    flex: 1;
+    text-align: center; /* Center the images and any text if desired */
+  }
+
+  .split-column:first-child {
+    border-right: 1px solid #ECEBEE;
+    padding-right: 20px; /* add some spacing away from the border */
+  }
+  
+  .top-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto; /* center and add spacing below the image */
+  }
+
+  .info-block {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  .info-item {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #000; /* Ensuring text is darker */
+  }
+  
+  .info-item strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .bar-container {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    width: 146px;
+  }
+  
+  .bar-segment {
+    width: 40px;
+    height: 6px;
+    border-radius: 4px;
+    margin-right: 5px;
+    background: #7d5ac4; /* default purple */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  /* Variations of purple bars */
+  .purple-dark {
+    background: #7d5ac4;
+  }
+  .purple-light {
+    background: #b5a2dc;
+  }
+  .purple-lighter {
+    background: #dcd2ee;
+  }
+
+  /* Goal Container */
+.goal-container {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .goal-container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .goal-container p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .goal-container blockquote {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
+    position: relative;
+    display: inline-block;
+    line-height: 1.4;
+    max-width: 80%;
+    background-color: #00000000;
+  }
+  
+  .goal-container blockquote:before {
+    content: "“";
+    position: absolute;
+    left: -29px;
+    top: -60px;
+    font-size: 8rem;
+    color: #ccd8ff; /* adjust color for left quote */
+    z-index: -1;
+  }
+  
+  .goal-container blockquote:after {
+    content: "”";
+    position: absolute;
+    right: 15px;
+    bottom: -120px;
+    font-size: 8rem;
+    color: #ccd8ff; /* adjust color for right quote */
+  }
+
+/* Plan Section */
+.plan-container {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  
+  .plan-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+/* Unselected Plan Card */
+/* Plan Card Container */
+.plan-card {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .plan-card.popular {
+    margin-top: 40px;
+  }
+  
+  .plan-card input {
+    display: none; /* Hide radio buttons */
+  }
+  
+  .plan-option {
+    display: flex;
+    justify-content: space-between; /* Align content */
+    align-items: center;
+    border: 1px solid #cfcfcf; /* Light gray border */
+    border-radius: 12px;
+    padding: 15px 20px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out;
+  }
+  
+  .plan-option:hover {
+    border-color: #aaa; /* Hover effect */
+  }
+  
+  /* Left Section (Radio + Title + Price) */
+  .plan-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .radio-circle {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  .plan-card input:checked ~ .plan-option {
+    border: 2px solid #7d5ac4; /* Purple border when selected */
+    border-radius: 0 0 12px 12px;
+  }
+
+  .plan-card input:checked ~ .plan-option .radio-circle {
+    border-color: #7d5ac4; /* Purple border when selected */
+    background: #7d5ac4;
+    box-shadow: 0 0 0 2px #fff inset;
+  }
+
+  .plan-card input:checked ~ .plan-option .new-cost {
+    color: black;
+  }
+  
+  .plan-card input:checked ~ .plan-option .per-day {
+    color: black;
+  }
+  
+  .plan-card input:checked ~ .plan-option .cents {
+    color: black;
+  }
+  
+  .plan-card input:checked ~ .plan-option .dollar {
+    color: black;
+  }
+  
+  .plan-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .plan-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 3px;
+  }
+  
+  .plan-price {
+    font-size: 0.9rem;
+    display: flex;
+    gap: 8px;
+  }
+  
+  .price-old {
+    color: #A5A5A5;
+    text-decoration: line-through;
+  }
+  
+  .plan-card.popular .price-new {
+    color: #A5A5A5;
+  }
+
+  .price-new {
+    color: #A5A5A5;
+    font-weight: bold;
+  }
+  
+  /* Right Section: Old and New Cost */
+  .plan-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 16%;
+  }
+
+  .big-number {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cents {
+    color: #A5A5A5;
+  }
+
+  .per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  /* Hide popular tag for plan1 and plan3 */
+#plan1 ~ .plan-option .popular-tag,
+#plan3 ~ .plan-option .popular-tag {
+    display: none;
+}
+
+  .popular-tag {
+    position: absolute;
+    top: -23px;         /* Position it on top of the plan card */
+    left: 0;
+    right: 0;
+    background: #7d5ac4;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+    z-index: 1;         /* Keep it above the content */
+    width: 100%; /* Make it the same width as the parent plan-card */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    margin: 0 auto;
+}
+
+  .plan-card input:checked + .plan-option::before {
+    border-color: #7d5ac4; /* Purple circle for checked state */
+    background: #7d5ac4;
+    box-shadow: 0 0 0 2px #fff inset;
+  }
+  
+  .cta-button-large {
+    background: #7d5ac4;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .cta-button-large:hover {
+    background: #6c4eb0;
+  }
+
+  /* Features Section */
+.features-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: left;
+  }
+  
+  .features-container h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0; /* Prevents icon shrinking */
+  }
+  
+  .feature-content strong {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .feature-content p {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0;
+  }
+
+  /* Money Back Guarantee Section */
+.money-back-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #F8F8FA;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 40px auto;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .money-back-content {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .money-back-content h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .money-back-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .money-back-badge img {
+    width: 100px;
+    height: auto;
+  }
+
+  /* Reviews Section */
+.reviews-container {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 700px;
+  }
+  
+  .reviews-container h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin: 0;
+    color: #333;
+  }
+  
+  .reviews-container h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #000;
+  }
+  
+  .reviews {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .review-card {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+  }
+  
+  .stars {
+    color: #ff9900; /* Gold star color */
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .review-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .reviewer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .reviewer img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .reviewer span {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Reviews Section */
+.reviews-container {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 700px;
+    overflow: hidden;
+  }
+  
+  .reviews-container h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin: 0;
+    color: #333;
+  }
+  
+  .reviews-container h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #000;
+  }
+  
+  .carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+  }
+  
+  .review-card {
+    flex: 0 0 100%; /* Each card takes full width of the carousel */
+    max-width: 100%;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .stars {
+    color: #ff9900; /* Gold star color */
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .review-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .reviewer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .reviewer img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .reviewer span {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+/* Footer Section */
+.footer-container {
+    background: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 12px;
+  }
+  
+  .footer-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Informational Text */
+  .footer-text {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .footer-text a {
+    color: #7d5ac4;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .footer-text a:hover {
+    text-decoration: underline;
+  }
+  
+/* Footer Plan Container */
+.unique-plan-container {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.unique-plan-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Plan Card Styles */
+.unique-plan-card {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.unique-plan-card.unique-popular-card {
+    margin-top: 40px;
+  }
+
+.unique-plan-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #cfcfcf;
+    border-radius: 12px;
+    padding: 15px 20px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out;
+}
+
+.unique-plan-option:hover {
+    border-color: #aaa;
+}
+
+.unique-plan-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Radio Button */
+.unique-plan-card input {
+    display: none;
+}
+
+.unique-radio-circle {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.unique-plan-card input:checked ~ .unique-plan-option {
+    border: 2px solid #7d5ac4;
+    border-radius: 0 0 12px 12px;
+}
+
+.unique-plan-card input:checked ~ .unique-plan-option .unique-plan-details .unique-new-cost {
+    color: #000;
+}
+
+.unique-plan-card input:checked ~ .unique-plan-option .unique-radio-circle {
+    border-color: #7d5ac4;
+    background: #7d5ac4;
+    box-shadow: 0 0 0 2px #fff inset;
+}
+
+  .unique-plan-card input:checked ~ .unique-plan-option .unique-new-cost {
+    color: black;
+  }
+  
+  .unique-plan-card input:checked ~ .unique-plan-option .unique-per-day {
+    color: black;
+  }
+  
+  .unique-plan-card input:checked ~ .unique-plan-option .unique-cents {
+    color: black;
+  }
+  
+  .unique-plan-card input:checked ~ .unique-plan-option .unique-dollar {
+    color: black;
+  }
+
+/* Plan Header */
+.unique-plan-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.unique-plan-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 3px;
+}
+
+.unique-plan-price {
+    font-size: 0.9rem;
+    display: flex;
+    gap: 8px;
+}
+
+.unique-price-old {
+    color: #A5A5A5;
+    text-decoration: line-through;
+}
+
+.unique-price-new {
+    color: #7d5ac4;
+    font-weight: bold;
+}
+
+/* Plan Details */
+.unique-plan-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.unique-old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 16%;
+}
+
+.unique-big-number {
+    display: flex;
+    flex-direction: row;
+}
+
+.unique-new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.unique-cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.unique-cents {
+    color: #A5A5A5;
+}
+
+.unique-per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+}
+
+/* Hide popular tag for plan1 and plan3 */
+#unique-plan1 ~ .unique-plan-option .unique-popular-tag,
+#unique-plan3 ~ .unique-plan-option .unique-popular-tag {
+    display: none;
+}
+
+/* Popular Tag */
+.unique-popular-tag {
+  position: absolute;
+  top: -23px;         /* Position it on top of the plan card */
+  left: 0;
+  right: 0;
+  background: #7d5ac4;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  z-index: 1;         /* Keep it above the content */
+    width: 100%; /* Make it the same width as the parent plan-card */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    margin: 0 auto;
+}
+  
+  /* CTA Button */
+  .cta-footer-btn {
+    background: #7d5ac4;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .cta-footer-btn:hover {
+    background: #6c4eb0;
+  }
+
+  
+/* Pay Safety Section */
+.pay-safety {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #0AB525;
+    background: #385345;
+    border-radius: 5px;
+    padding: 3px 3px;
+    margin: 15px auto;
+    width: fit-content;
+    gap: 5px;
+  }
+  
+  .pay-icon {
+    font-size: 1rem;
+    color: #0AB525;
+  }
+  
+  /* Payment Icons */
+  .payment-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .payment-icons img {
+    height: 24px;
+    width: auto;
+  }
+  
+/* SMALL DEVICES */
+
+/* Extra Small Devices (Very Small Phones) */
+@media (min-width: 320px) and (max-width: 374px) {
+
+  .plan-container {
+    padding: 0 10px;
+  }
+
+  .plan-title {
+    font-size: 1rem;
+  }
+
+  /* Right Section: Old and New Cost */
+  .plan-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 0.9rem;
+    color: #777;
+  }
+
+  .old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 32%;
+  }
+
+  .big-number {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cents {
+    color: #A5A5A5;
+  }
+
+  .per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  .features-container {
+    width: 90%;
+  }
+
+  .money-back-container {
+    width: 90%;
+  }
+
+  .reviews-container {
+    width: 90%;
+  }
+
+  footer {
+    width: 90%;
+  }
+
+  .unique-old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 32%;
+  }
+
+  .unique-big-number {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .unique-new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .unique-cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .unique-cents {
+    color: #A5A5A5;
+  }
+
+  .unique-per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+}
+
+/* Small Devices (Mobile Phones) */
+@media (min-width: 375px) and (max-width: 479px) {
+
+  .plan-container {
+    padding: 0 10px;
+  }
+
+  .plan-title {
+    font-size: 1rem;
+  }
+
+  /* Right Section: Old and New Cost */
+  .plan-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 0.9rem;
+    color: #777;
+  }
+
+  .old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 32%;
+  }
+
+  .big-number {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cents {
+    color: #A5A5A5;
+  }
+
+  .per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  .features-container {
+    width: 90%;
+  }
+
+  .money-back-container {
+    width: 90%;
+  }
+
+  .reviews-container {
+    width: 90%;
+  }
+
+  footer {
+    width: 90%;
+  }
+
+  .unique-old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 32%;
+  }
+
+  .unique-big-number {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .unique-new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .unique-cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .unique-cents {
+    color: #A5A5A5;
+  }
+
+  .unique-per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+}
+
+/* Medium Devices (Large Mobile Phones and Small Tablets) */
+@media (min-width: 480px) and (max-width: 599px) {
+
+  .plan-container {
+    padding: 0 10px;
+  }
+
+  .plan-title {
+    font-size: 1rem;
+  }
+
+  /* Right Section: Old and New Cost */
+  .plan-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 0.9rem;
+    color: #777;
+  }
+
+  .old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 32%;
+  }
+
+  .big-number {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cents {
+    color: #A5A5A5;
+  }
+
+  .per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  .features-container {
+    width: 90%;
+  }
+
+  .money-back-container {
+    width: 90%;
+  }
+
+  .reviews-container {
+    width: 90%;
+  }
+
+  footer {
+    width: 90%;
+  }
+
+  .unique-old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 32%;
+  }
+
+  .unique-big-number {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .unique-new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .unique-cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .unique-cents {
+    color: #A5A5A5;
+  }
+
+  .unique-per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+}
+
+/* Small devices (Phones, including iPhone) */
+@media (min-width: 600px) and (max-width: 767px) {
+
+  .plan-container {
+    padding: 0 10px;
+  }
+
+  .plan-title {
+    font-size: 1rem;
+  }
+
+  /* Right Section: Old and New Cost */
+  .plan-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 0.9rem;
+    color: #777;
+  }
+
+  .old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 32%;
+  }
+
+  .big-number {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cents {
+    color: #A5A5A5;
+  }
+
+  .per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  .features-container {
+    width: 90%;
+  }
+
+  .money-back-container {
+    width: 90%;
+  }
+
+  .reviews-container {
+    width: 90%;
+  }
+
+  footer {
+    width: 90%;
+  }
+
+  .unique-popular-tag {
+    width: 94.2%;
+  }
+
+  .unique-old-cost {
+    text-decoration: line-through 1px #FF0000;
+    color: #A5A5A5;
+    position: absolute;
+    top: 19px;
+    right: 32%;
+  }
+
+  .unique-big-number {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .unique-new-cost {
+    color: #A5A5A5;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .unique-cents-day-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .unique-cents {
+    color: #A5A5A5;
+  }
+
+  .unique-per-day {
+    color: #A5A5A5;
+    font-size: 8px;
+    line-height: 10px;
+  }
+}
+
+/* Medium devices (Tablets) */
+@media (min-width: 601px) and (max-width: 768px) {
+
+  .plan-container {
+    max-width: 90%;
+  }
+
+  .plan-title {
+    font-size: 1.2rem;
+  }
+
+  .cta-button-large {
+    font-size: 1rem;
+    padding: 12px 18px;
+  }
+
+  .popular-tag {
+    width: 94.6%;
+  }
+
+  .unique-popular-tag {
+    width: 94.6%;
+  }
+}
+
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="top-row">
+    <div class="countdown">09:59</div>
+    <button class="cta-button">Get my plan</button>
+  </div>
+  <div class="split-container">
+    <div class="split-column">
+      <img src="img/image1.svg" alt="Left Illustration" class="top-image"/>
+      <div class="info-block">
+        <div class="info-item">
+          <strong>Tantrums</strong>
+          A few times a week
+        </div>
+        <div class="info-item">
+          <strong>Average focus time</strong>
+          5-15 minutes
+        </div>
+        <div class="info-item">
+          <strong>Emotional control ability</strong>
+          <div class="bar-container">
+            <div class="bar-segment purple-dark"></div>
+            <div class="bar-segment purple-light"></div>
+            <div class="bar-segment purple-lighter"></div>
+          </div>
+        </div>
+        <div class="info-item">
+          <strong>Level of socialization</strong>
+          <div class="bar-container">
+            <div class="bar-segment purple-dark"></div>
+            <div class="bar-segment purple-dark"></div>
+            <div class="bar-segment purple-lighter"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="split-column">
+      <img src="img/image2.svg" alt="Right Illustration" class="top-image"/>
+      <div class="info-block">
+        <div class="info-item">
+          <strong>Tantrums</strong>
+          Once a month or less
+        </div>
+        <div class="info-item">
+          <strong>Average focus time</strong>
+          More than 30 minutes
+        </div>
+        <div class="info-item">
+          <strong>Emotional control ability</strong>
+          <div class="bar-container">
+            <div class="bar-segment purple-dark"></div>
+            <div class="bar-segment purple-dark"></div>
+            <div class="bar-segment purple-dark"></div>
+          </div>
+        </div>
+        <div class="info-item">
+          <strong>Level of socialization</strong>
+          <div class="bar-container">
+            <div class="bar-segment purple-dark"></div>
+            <div class="bar-segment purple-dark"></div>
+            <div class="bar-segment purple-dark"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="goal-container">
+    <h2>Plan for You & Your Child is ready!</h2>
+    <p>Your Goal:</p>
+    <blockquote>
+      Help my child understand that what they’re going through is normal
+    </blockquote>
+  </div>
+</header>
+<main>
+    <div class="plan-container">
+        <h2>Choose your plan</h2>
+      
+        <div class="plan-card">
+          <input type="radio" id="plan1" name="plan" />
+          <label for="plan1" class="plan-option">
+            <div class="popular-tag">MOST POPULAR</div>
+            <div class="plan-left">
+              <div class="radio-circle"></div>
+              <div class="plan-header">
+                <span class="plan-title">1 month</span>
+                <div class="plan-price">
+                  <span class="price-old">$23.51</span>
+                  <span class="price-new">$11.99</span>
+                </div>
+              </div>
+            </div>
+            <div class="plan-details">
+                <span class="old-cost">$0.78</span>
+                <div class="big-number" style="display: flex;flex-direction: row;">
+                <span class="dollar"><strong>$</strong></span>
+                <span class="new-cost">0</span>
+                <div class="cents-day-order" style="display: flex;flex-direction: column;align-items: flex-start;">
+                <span class="cents">39</span>
+                <span class="per-day"><strong>PER DAY</strong></span>
+                </div>
+                </div>
+            </div>
+          </label>
+        </div>
+      
+        <div class="plan-card popular">
+          <input type="radio" id="plan2" name="plan" checked />
+          <label for="plan2" class="plan-option">
+            <div class="popular-tag">MOST POPULAR</div>
+            <div class="plan-left">
+              <div class="radio-circle"></div>
+              <div class="plan-header">
+                <span class="plan-title">3 months</span>
+                <div class="plan-price">
+                  <span class="price-old">$58.80</span>
+                  <span class="price-new">$29.99</span>
+                </div>
+              </div>
+            </div>
+            <div class="plan-details">
+                <span class="old-cost">$0.65</span>
+                <div class="big-number" style="display: flex;flex-direction: row;">
+                <span class="dollar"><strong>$</strong></span>
+                <span class="new-cost">0</span>
+                <div class="cents-day-order" style="display: flex;flex-direction: column;align-items: flex-start;">
+                <span class="cents">33</span>
+                <span class="per-day"><strong>PER DAY</strong></span>
+                </div>
+                </div>
+            </div>
+          </label>
+        </div>
+      
+        <div class="plan-card">
+          <input type="radio" id="plan3" name="plan" />
+          <label for="plan3" class="plan-option">
+            <div class="popular-tag">MOST POPULAR</div>
+            <div class="plan-left">
+              <div class="radio-circle"></div>
+              <div class="plan-header">
+                <span class="plan-title">6 months</span>
+                <div class="plan-price">
+                  <span class="price-old">$107.82</span>
+                  <span class="price-new">$54.99</span>
+                </div>
+              </div>
+            </div>
+            <div class="plan-details">
+                <span class="old-cost">$0.59</span>
+                <div class="big-number" style="display: flex;flex-direction: row;">
+                <span class="dollar"><strong>$</strong></span>
+                <span class="new-cost">0</span>
+                <div class="cents-day-order" style="display: flex;flex-direction: column;align-items: flex-start;">
+                <span class="cents">30</span>
+                <span class="per-day"><strong>PER DAY</strong></span>
+                </div>
+                </div>
+            </div>
+          </label>
+        </div>
+
+            <!-- CTA Button -->
+    <button class="cta-button-large">Get my plan!</button>
+
+      </div>
+    <!-- What You Get Section -->
+    <div class="features-container">
+        <h2>What you get</h2>
+        <div class="feature">
+          <img src="img/people.svg" alt="Kids & Parents" class="feature-icon" />
+          <div class="feature-content">
+            <strong>Both for Kids & Parents</strong>
+            <p>Practical tools for parents & exercises, games and stories for kids</p>
+          </div>
+        </div>
+    
+        <div class="feature">
+          <img src="img/info.svg" alt="Proven to work" class="feature-icon" />
+          <div class="feature-content">
+            <strong>Proven to work</strong>
+            <p>6 out of 10 exercises are effective, tested by 1,000 families</p>
+          </div>
+        </div>
+    
+        <div class="feature">
+          <img src="img/check.svg" alt="Personalized Recommendations" class="feature-icon" />
+          <div class="feature-content">
+            <strong>Personalized Recommendations</strong>
+            <p>Tailored exercises based on your child’s symptoms, advice from doctors, and other parents</p>
+          </div>
+        </div>
+    
+        <div class="feature">
+          <img src="img/puzzle.svg" alt="Simple Interface" class="feature-icon" />
+          <div class="feature-content">
+            <strong>Simple and Clear Interface</strong>
+            <p>We understand complex interfaces can cause frustration, so ours was tested by 1,000 families to ensure ease of use</p>
+          </div>
+        </div>
+      </div>
+        <!-- Money Back Guarantee Section -->
+    <div class="money-back-container">
+    <div class="money-back-content">
+      <h2>Money back guarantee</h2>
+      <p>We believe that our plan will work for you and for your child and you'll get visible results in 4 weeks! We are even ready to completely refund you within 30 days after purchase if you don't get visible results.</p>
+    </div>
+    <div class="money-back-badge">
+      <img src="img/guarantee.svg" alt="30 Days Guarantee Badge" />
+    </div>
+  </div>
+  <!-- Customer Reviews Section -->
+  <div class="reviews-container">
+    <h2>We helped over</h2>
+    <h1>17000+ families</h1>
+    <div class="carousel">
+      <div class="carousel-inner">
+        <!-- Review Card 1 -->
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>This app has truly been a game-changer for me and my child! The interactive tasks and challenges make learning a fun and engaging experience. Not only does it help my child understand that making mistakes is normal, but it also cultivates a growth mindset, promoting the idea that you're always improving.</p>
+          <div class="reviewer">
+            <img src="img/Woman 1.png" alt="kriskris" />
+            <span>kriskris</span>
+          </div>
+        </div>
+
+        <!-- Review Card 2 -->
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>It is more than just exercises. The tasks help kids bond and focus. My children now can easily manage their emotions, and it's a worthwhile investment!</p>
+          <div class="reviewer">
+            <img src="img/Woman 2.png" alt="Ramesh" />
+            <span>Ramona1898</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- Footer Section -->
+<footer class="footer-container">
+    <div class="unique-plan-container">
+        <h2>Choose your plan</h2>
+
+        <div class="unique-plan-card">
+            <input type="radio" id="unique-plan1" name="unique-plan" />
+            <label for="unique-plan1" class="unique-plan-option">
+                <div class="unique-popular-tag">MOST POPULAR</div>
+                <div class="unique-plan-left">
+                    <div class="unique-radio-circle"></div>
+                    <div class="unique-plan-header">
+                        <span class="unique-plan-title">1 month</span>
+                        <div class="unique-plan-price">
+                            <span class="unique-price-old">$23.51</span>
+                            <span class="unique-price-new">$11.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="unique-plan-details">
+                    <span class="unique-old-cost">$0.78</span>
+                    <div class="unique-big-number">
+                        <span class="unique-dollar"><strong>$</strong></span>
+                        <span class="unique-new-cost">0</span>
+                        <div class="unique-cents-day-order">
+                            <span class="unique-cents">39</span>
+                            <span class="unique-per-day"><strong>PER DAY</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+
+        <div class="unique-plan-card unique-popular-card">
+            <input type="radio" id="unique-plan2" name="unique-plan" checked />
+            <label for="unique-plan2" class="unique-plan-option">
+                <div class="unique-popular-tag">MOST POPULAR</div>
+                <div class="unique-plan-left">
+                    <div class="unique-radio-circle"></div>
+                    <div class="unique-plan-header">
+                        <span class="unique-plan-title">3 months</span>
+                        <div class="unique-plan-price">
+                            <span class="unique-price-old">$58.80</span>
+                            <span class="unique-price-new">$29.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="unique-plan-details">
+                    <span class="unique-old-cost">$0.65</span>
+                    <div class="unique-big-number">
+                        <span class="unique-dollar"><strong>$</strong></span>
+                        <span class="unique-new-cost">0</span>
+                        <div class="unique-cents-day-order">
+                            <span class="unique-cents">33</span>
+                            <span class="unique-per-day"><strong>PER DAY</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+
+        <div class="unique-plan-card">
+            <input type="radio" id="unique-plan3" name="unique-plan" />
+            <label for="unique-plan3" class="unique-plan-option">
+                <div class="unique-popular-tag">MOST POPULAR</div>
+                <div class="unique-plan-left">
+                    <div class="unique-radio-circle"></div>
+                    <div class="unique-plan-header">
+                        <span class="unique-plan-title">6 months</span>
+                        <div class="unique-plan-price">
+                            <span class="unique-price-old">$107.82</span>
+                            <span class="unique-price-new">$54.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="unique-plan-details">
+                    <span class="unique-old-cost">$0.59</span>
+                    <div class="unique-big-number">
+                        <span class="unique-dollar"><strong>$</strong></span>
+                        <span class="unique-new-cost">0</span>
+                        <div class="unique-cents-day-order">
+                            <span class="unique-cents">30</span>
+                            <span class="unique-per-day"><strong>PER DAY</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+      <!-- Informational Text -->
+  <p class="footer-text">
+    Kindly be aware that your subscription will automatically renew at the conclusion of your selected subscription term. If you wish to manage your subscription, please feel free to reach out to us at <a href="mailto:support@seneka.team">support@seneka.team</a>.
+  </p>
+  
+    <!-- CTA Button -->
+    <button class="cta-footer-btn">Get my plan!</button>
+
+      <!-- Pay Safety & Payment Methods -->
+  <div class="pay-safety">
+    <span class="pay-icon"><img src="img/verified.svg"></span>
+    <span>Pay safety & secure</span>
+  </div>
+
+  <div class="img/payment-icons">
+    <img src="img/applepay.svg" alt="Apple Pay" />
+    <img src="img/googlepay.svg" alt="Google Pay" />
+    <img src="img/mastercard.svg" alt="MasterCard" />
+    <img src="img/paypal.svg" alt="PayPal" />
+    <img src="img/visa.svg" alt="Visa" />
+  </div>
+  </footer>
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const plans = document.querySelectorAll('input[name="unique-plan"]');
+
+    const updatePopularTags = () => {
+        plans.forEach(plan => {
+            const label = plan.nextElementSibling;
+            const popularTag = label.querySelector('.unique-popular-tag');
+            const card = plan.closest('.unique-plan-card'); // Find the parent card
+            
+            if (plan.checked) {
+                popularTag.style.display = 'block'; // Show the popular tag for the checked plan
+                card.classList.add('unique-popular-card'); // Add the class to the checked plan
+            } else {
+                popularTag.style.display = 'none'; // Hide the popular tag for other plans
+                card.classList.remove('unique-popular-card'); // Remove the class from other plans
+            }
+        });
+    };
+
+    // Attach event listener to all plans
+    plans.forEach(plan => {
+        plan.addEventListener('change', updatePopularTags);
+    });
+
+    // Initialize the correct state on page load
+    updatePopularTags();
+
+    //PLAN IN MAIN
+    const mainPlans = document.querySelectorAll('input[name="plan"]');
+
+    const mainUpdatePopularTags = () => {
+        mainPlans.forEach(plan => {
+            const label = plan.nextElementSibling;
+            const popularTag = label.querySelector('.popular-tag');
+            const card = plan.closest('.plan-card'); // Find the parent card
+            
+            if (plan.checked) {
+                popularTag.style.display = 'block'; // Show the popular tag for the checked plan
+                card.classList.add('popular'); // Add the class to the checked plan
+            } else {
+                popularTag.style.display = 'none'; // Hide the popular tag for other plans
+                card.classList.remove('popular'); // Remove the class from other plans
+            }
+        });
+    };
+
+    // Attach event listener to all plans
+    mainPlans.forEach(plan => {
+        plan.addEventListener('change', mainUpdatePopularTags);
+    });
+
+    // Initialize the correct state on page load
+    mainUpdatePopularTags();
+
+    //REVIEWS
+    const carouselInner = document.querySelector('.carousel-inner');
+    const reviewCards = document.querySelectorAll('.review-card');
+    const scrollInterval = 5000; // Time in milliseconds (X seconds)
+    const cardWidth = reviewCards[0].offsetWidth; // Width of one review card
+    let currentIndex = 0;
+
+    // Clone the first review card and append it to the end for smooth looping
+    const firstCardClone = reviewCards[0].cloneNode(true);
+    carouselInner.appendChild(firstCardClone);
+
+    const scrollCarousel = () => {
+        currentIndex++;
+
+        // Apply transform to move the carousel
+        carouselInner.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        carouselInner.style.transition = 'transform 0.5s ease-in-out';
+
+        // Check if it's the last real review, and reset without visible transition
+        if (currentIndex === reviewCards.length) {
+            setTimeout(() => {
+                carouselInner.style.transition = 'none'; // Disable transition for reset
+                carouselInner.style.transform = 'translateX(0)';
+                currentIndex = 0; // Reset to the first review
+            }, 500); // Match the transition duration
+        }
+    };
+
+    // Start the interval for automatic scrolling
+    setInterval(scrollCarousel, scrollInterval);
+
+    //COUNTDOWN
+    const countdownElement = document.querySelector('.countdown');
+    const ctaButton = document.querySelector('.cta-button');
+    const countdownTime = "12:00"
+
+    // Parse the initial time from the countdown element (e.g., "09:59")
+    const initialTimeText = countdownTime;
+    const [initialMinutes, initialSeconds] = initialTimeText.split(':').map(Number);
+    let time = initialMinutes * 60 + initialSeconds; // Convert to total seconds
+
+    const updateCountdown = () => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+
+        // Update the countdown display
+        countdownElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        // Check if the timer has reached zero
+        if (time === 0) {
+            clearInterval(countdownInterval); // Stop the countdown
+            ctaButton.disabled = true; // Disable the button
+            ctaButton.textContent = 'Time Expired'; // Update button text
+        } else {
+            time--; // Decrement the time
+        }
+    };
+
+    // Start the countdown timer
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    // Initialize the display
+    updateCountdown();
+
+    //BARS
+    // Numeric levels provided by the client for the first and second split-column
+    const emotionalControlLevelsFirst = [2]; // Levels for "Emotional control ability" in the first split-column
+    const socializationLevelsFirst = [1]; // Levels for "Level of socialization" in the first split-column
+
+    const emotionalControlLevelsSecond = [3]; // Levels for "Emotional control ability" in the second split-column
+    const socializationLevelsSecond = [3]; // Levels for "Level of socialization" in the second split-column
+
+    // Colors for segments (darkest to lightest)
+    const colors = ['#7d5ac4', '#b5a2dc', '#dcd2ee'];
+
+    // Function to update bar segment colors based on levels
+    const updateBarColors = (splitColumnSelector, barIndex, levels) => {
+        const splitColumn = document.querySelector(splitColumnSelector); // Select the split-column
+        const barContainer = splitColumn.querySelectorAll('.info-item')[barIndex].querySelector('.bar-container'); // Get the specific bar-container
+        const segments = barContainer.querySelectorAll('.bar-segment');
+        const level = levels[0]; // Get the level for this bar
+
+        segments.forEach((segment, index) => {
+            if (index < level) {
+                // All selected bars get the darkest color
+                segment.style.backgroundColor = colors[0]; // Darkest color
+            } else {
+                // Remaining bars lighten progressively
+                segment.style.backgroundColor = colors[Math.min(index - level + 1, colors.length - 1)];
+            }
+        });
+    };
+
+    // First split-column (first column of bars)
+    updateBarColors('.split-column:nth-child(1)', 2, emotionalControlLevelsFirst); // Emotional control ability
+    updateBarColors('.split-column:nth-child(1)', 3, socializationLevelsFirst); // Level of socialization
+
+    // Second split-column (second column of bars)
+    updateBarColors('.split-column:nth-child(2)', 2, emotionalControlLevelsSecond); // Emotional control ability
+    updateBarColors('.split-column:nth-child(2)', 3, socializationLevelsSecond); // Level of socialization
+
+    //CTA1
+    const ctaButton1 = document.querySelector('.cta-button-large'); // Select the CTA button
+
+    // Define the URLs for each plan
+    const planUrls = {
+        plan1: 'https://example.com/plan1', // Replace with the actual URL for Plan 1
+        plan2: 'https://example.com/plan2', // Replace with the actual URL for Plan 2
+        plan3: 'https://example.com/plan3'  // Replace with the actual URL for Plan 3
+    };
+
+    // Add a click event listener to the button
+    ctaButton1.addEventListener('click', () => {
+        // Get the selected radio input
+        const selectedPlan = document.querySelector('input[name="plan"]:checked');
+
+        if (selectedPlan) {
+            // Redirect to the corresponding URL
+            const url = planUrls[selectedPlan.id];
+            if (url) {
+                window.location.href = url; // Redirect to the URL
+            } else {
+                alert('Invalid plan selected.'); // Fallback for undefined URLs
+            }
+        } else {
+            alert('Please select a plan.'); // Fallback if no plan is selected
+        }
+    });
+
+        //CTA2
+        const ctaFooterButton = document.querySelector('.cta-footer-btn'); // Select the CTA footer button
+
+        // Define the URLs for each unique plan
+        const uniquePlanUrls = {
+            'unique-plan1': 'https://example.com/unique-plan1', // Replace with the actual URL for Plan 1
+            'unique-plan2': 'https://example.com/unique-plan2', // Replace with the actual URL for Plan 2
+            'unique-plan3': 'https://example.com/unique-plan3'  // Replace with the actual URL for Plan 3
+        };
+    
+        // Add a click event listener to the button
+        ctaFooterButton.addEventListener('click', () => {
+            // Get the selected radio input
+            const selectedPlan = document.querySelector('input[name="unique-plan"]:checked');
+    
+            if (selectedPlan) {
+                const planId = selectedPlan.id; // Get the ID of the selected input
+                const url = uniquePlanUrls[planId]; // Fetch the URL from the object
+    
+                if (url) {
+                    window.location.href = url; // Redirect to the URL
+                } else {
+                    console.error(`No URL defined for ID: ${planId}`);
+                    alert('Invalid plan selected.');
+                }
+            } else {
+                alert('Please select a plan.'); // Fallback if no plan is selected
+            }
+        });
+
+            // Variables for updating text content
+    const infoTextsFirstColumn = [
+        'A few times a week',       // For "Tantrums"
+        '5-15 minutes',             // For "Average focus time"
+        null,                       // For "Emotional control ability" (no text update, as it contains bars)
+        null                        // For "Level of socialization" (no text update, as it contains bars)
+    ];
+
+    const infoTextsSecondColumn = [
+        'Once a month or less',     // For "Tantrums"
+        'More than 30 minutes',     // For "Average focus time"
+        null,                       // For "Emotional control ability" (no text update, as it contains bars)
+        null                        // For "Level of socialization" (no text update, as it contains bars)
+    ];
+
+    // Function to update info-item text
+    const updateInfoTexts = (columnSelector, texts) => {
+        const column = document.querySelector(columnSelector); // Select the specific column
+        const infoItems = column.querySelectorAll('.info-item'); // Select all .info-item elements
+
+        infoItems.forEach((item, index) => {
+            if (texts[index] !== null) {
+                // Only update the text if the value is not null
+                const strongElement = item.querySelector('strong'); // Select the <strong> element
+                const strongText = strongElement ? strongElement.outerHTML : ''; // Preserve the <strong> element
+                item.innerHTML = `${strongText} ${texts[index]}`; // Update content after <strong>
+            }
+        });
+    };
+
+    // Update both split columns
+    updateInfoTexts('.split-column:nth-child(1) .info-block', infoTextsFirstColumn); // First column
+    updateInfoTexts('.split-column:nth-child(2) .info-block', infoTextsSecondColumn); // Second column
+    
+    //GOAL TEXT
+    // Define the variable with the desired text
+    let goalText = "Help my child understand that what they’re going through is normal";
+    
+    // Find the blockquote element within the goal-container
+    let blockquoteElement = document.querySelector('.goal-container blockquote');
+    
+    // Update the content of the blockquote with the variable
+    blockquoteElement.textContent = goalText;
+});
+  </script>
+</body>
+</html>
